@@ -1,16 +1,35 @@
 ---
-layout:       post
-title:        "《JavaScript 二十年》推荐语"
-author:       "Hux"
-header-style: text
-catalog:      true
+layout: post
+title: "这是我接管这个模板并建站后的第一篇文章"
+subtitle: " \"Hello World, Hello Blog\""
+date: 2025-03-16 12:00:00
+author: "xr_日计划"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
 tags:
-    - Web
-    - JavaScript
+  - Meta
 ---
 
-> 雪碧（doodlewind）邀请我给[《JavaScript 二十年》](https://zhuanlan.zhihu.com/p/373065151) 写的推荐序。
+> “Yeah It's on. ”
 
-JavaScript 常常被戏称为一门偶然成功的玩具语言。而实际上，它出身名门，更是成长在聚光灯之下。纵观历史，有资格被标准化的编程语言甚少，它因此成为多方角力的战场，却也有幸同时得到业界与学界先驱的亲传。时至今日，我们甚至难言是它背负了太多妥协，还是这些妥协才成就了它呢。以史为鉴，或许你会有自己的答案。
+“Hux 的 Blog 就这么开通了。”
+这是大佬的模板中的第一句话，同时你可以看见许多的大佬的原帖，先就保留一下把。
 
-— 黄玄，Facebook 软件工程师（编程语言、JS 引擎、前端基础设施）、中文前端社区活跃成员。
+[跳过废话，直接看技术实现](#build) 
+
+这是来自原本的模板的主人黄玄大佬在接近十年之前写下的第一篇blog，我今天将其fork了下来进行了我的个人站的搭建，并利用他的第一篇blog来作为自己的第一篇blog的模板，也算是一种致敬了吧，貌似这位大佬是做前端出身的，而我目前还没有好好的确定自己的技术栈到底要走什么方向，目前也是在坚定的刷洛谷与力扣中，不久也要开始自己的数分学习了，记录一下把。
+
+<p id="build"></p>
+
+## 这是我决定用C++进行造轮子并记录的第一天，也不一定进行日更，看我的学习进度把。
+
+### 1. GCD（最大公约数）的计算
+
+#### 1.1 递归实现
+
+`gcd(a, b)`（最大公约数）的递归定义如下：
+
+```cpp
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
