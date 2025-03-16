@@ -1,74 +1,123 @@
 ---
-layout:     post
-title:      "Hello 2015"
-subtitle:   " \"Hello World, Hello Blog\""
-date:       2015-01-29 12:00:00
-author:     "Hux"
+layout: post
+title: "这是我接管这个模板并建站后的第一篇文章"
+subtitle: " \"Hello World, Hello Blog\""
+date: 2025-03-16 12:00:00
+author: "xr_日计划"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
 tags:
-    - Meta
+  - Meta
 ---
 
 > “Yeah It's on. ”
 
+“Hux 的 Blog 就这么开通了。”
+这是大佬的模板中的第一句话，同时你可以看见许多的大佬的原帖，先就保留一下把。
 
-Hux 的 Blog 就这么开通了。
+[跳过废话，直接看技术实现](#build) 
 
-[跳过废话，直接看技术实现 ](#build) 
+这是来自原本的模板的主人黄玄大佬在接近十年之前写下的第一篇blog，我今天将其fork了下来进行了我的个人站的搭建，并利用他的第一篇blog来作为自己的第一篇blog的模板，也算是一种致敬了吧，貌似这位大佬是做前端出身的，而我目前还没有好好的确定自己的技术栈到底要走什么方向，目前也是在坚定的刷洛谷与力扣中，不久也要开始自己的数分学习了，记录一下把。
 
-2015 年，Hux 总算有个地方可以好好写点东西了。
+<p id="build"></p>
 
+## 这是我决定用C++进行造轮子并记录的第一天，也不一定进行日更，看我的学习进度把。
 
-作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。
+### 1. GCD（最大公约数）的计算
 
-在玩了一段时间知乎之后，答题的快感又激起了我开博客的冲动。之前的[个人网站](http://huangxuan.me/portfolio)是作品集形式的（现在集成进来了），并不适合用来写博文，一不做二不休，花一天搞一个吧！
+#### 1.1 递归实现
 
+`gcd(a, b)`（最大公约数）的递归定义如下：
 
-<p id = "build"></p>
+```cpp
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+2. STL 中的搜索函数
+C++ STL 提供了多种搜索算法，其中 std::find 和 std::find_if 非常常见。
 
-## 正文
+2.1 std::find
+cpp
+复制
+编辑
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-接下来说说搭建这个博客的技术细节。  
+int main() {
+    std::vector<int> v = {1, 3, 5, 7, 9};
+    auto it = std::find(v.begin(), v.end(), 5);
+    if (it != v.end()) {
+        std::cout << "Found: " << *it << std::endl;
+    } else {
+        std::cout << "Not found" << std::endl;
+    }
+}
+特点：
 
-正好之前就有关注过 [GitHub Pages](https://pages.github.com/) + [Jekyll](http://jekyllrb.com/) 快速 Building Blog 的技术方案，非常轻松时尚。
+适用于 vector、list、array 等容器。
+时间复杂度：O(n)。
+2.2 std::find_if
+使用 find_if 查找满足条件的元素：
 
-其优点非常明显：
+cpp
+复制
+编辑
+auto it = std::find_if(v.begin(), v.end(), [](int x) { return x > 5; });
+特点：
 
-* **Markdown** 带来的优雅写作体验
-* 非常熟悉的 Git workflow ，**Git Commit 即 Blog Post**
-* 利用 GitHub Pages 的域名和免费无限空间，不用自己折腾主机
-	* 如果需要自定义域名，也只需要简单改改 DNS 加个 CNAME 就好了 
-* Jekyll 的自定制非常容易，基本就是个模版引擎
+传入 lambda 表达式，查找符合条件的元素。
+2.3 std::find_if_not
+用于查找第一个不符合条件的元素：
 
+cpp
+复制
+编辑
+auto it = std::find_if_not(v.begin(), v.end(), [](int x) { return x % 2 == 0; });
+2.4 std::search
+用于查找子序列：
 
-本来觉得最大的缺点可能是 GitHub 在国内访问起来太慢，所以第二天一起床就到 GitCafe(Chinese GitHub Copy，现在被 Coding 收购了) 迁移了一个[镜像](http://huxpro.coding.me)出来，结果还是巨慢。
+cpp
+复制
+编辑
+std::vector<int> v1 = {1, 2, 3, 4, 5, 6};
+std::vector<int> v2 = {3, 4};
+auto it = std::search(v1.begin(), v1.end(), v2.begin(), v2.end());
+若 it != v1.end()，则找到了匹配的子序列。
 
-哥哥可是个前端好嘛！ 果断开 Chrome DevTool 查了下网络请求，原来是 **pending 在了 Google Fonts** 上，页面渲染一直被阻塞到请求超时为止，难怪这么慢。  
-忍痛割爱，只好把 Web Fonts 去了（反正超时看到的也只能是 fallback ），果然一下就正常了，而且 GitHub 和 GitCafe 对比并没有感受到明显的速度差异，虽然 github 的 ping 值明显要高一些，达到了 300ms，于是用 DNSPOD 优化了一下速度。
+3. size_t 的特点与注意事项
+size_t 是 无符号整数，常用于索引、长度等场景：
 
+cpp
+复制
+编辑
+size_t len = vec.size(); // 推荐
+3.1 size_t 和 int 的区别
+类型	特性	适用场景
+int	有符号，可能为负	普通计算
+size_t	无符号，只能是非负数	数组索引、sizeof 计算
+3.2 size_t 的潜在坑
+① size_t 和 int 比较
+cpp
+复制
+编辑
+size_t a = 5;
+int b = -1;
+if (a > b) {  // 可能出现逻辑错误
+    std::cout << "size_t 5 > int -1!" << std::endl;
+}
+原因：
 
----
+b 被隐式转换为 无符号数，变成一个非常大的数（UINT_MAX - 1）。
+避免用 size_t 和 int 混合比较！
+② size_t 减法可能导致溢出
+cpp
+复制
+编辑
+size_t a = 0;
+a--;  // 变成了最大值，不会变成负数！
+std::cout << a << std::endl;  // 输出一个很大的数
+解决方案：
 
-配置的过程中也没遇到什么坑，基本就是 Git 的流程，相当顺手
-
-大的 Jekyll 主题上直接 fork 了 Clean Blog（这个主题也相当有名，就不多赘述了。唯一的缺点大概就是没有标签支持，于是我给它补上了。）
-
-本地调试环境需要 `gem install jekyll`，结果 rubygem 的源居然被墙了……后来手动改成了我大淘宝的镜像源才成功
-
-Theme 的 CSS 是基于 Bootstrap 定制的，看得不爽的地方直接在 Less 里改就好了（平时更习惯 SCSS 些），**不过其实我一直觉得 Bootstrap 在移动端的体验做得相当一般，比我在淘宝参与的团队 CSS 框架差多了……**所以为了体验，也补了不少 CSS 进去
-
-最后就进入了耗时反而最长的**做图、写字**阶段，也算是进入了**写博客**的正轨，因为是类似 Hack Day 的方式去搭这个站的，所以折腾折腾着大半夜就过去了。
-
-第二天考虑中文字体的渲染，fork 了 [Type is Beautiful](http://www.typeisbeautiful.com/) 的 `font` CSS，调整了字号，适配了 Win 的渣渲染，中英文混排效果好多了。
-
-
-## 后记
-
-回顾这个博客的诞生，纯粹是出于个人兴趣。在知乎相关问题上回答并获得一定的 star 后，我决定把这个博客主题当作一个小小的开源项目来维护。
-
-在经历 v1.0 - v1.5 的蜕变后，这个博客主题愈发完整，不但增加了诸多 UI 层的优化（opinionated）；在代码层面，更加丰富的配置项也使得这个主题拥有了更好的灵活性与可拓展性。而作为一个开源项目，我也积极的为其完善文档与解决 issue。
-
-如果你恰好逛到了这里，希望你也能喜欢这个博客主题。
-
-—— Hux 后记于 2015.10
+使用 ssize_t（有符号版本） 避免溢出。
+在逻辑判断前，检查 size_t 是否为 0。
