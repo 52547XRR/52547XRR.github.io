@@ -1,11 +1,11 @@
 # Site settings
 title: Hux Blog
-SEOTitle: 黄玄的博客 | Hux Blog
+SEOTitle: RJH的博客 | xr_日计划 Blog
 header-img: img/home-bg.jpg
-email: huxpro@gmail.com
-description: "这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界 | 要做一个有 swag 的程序员"
-keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, Web, JavaScript, React, React Native, 前端, 设计"
-url: "https://huangxuan.me" # your host, for absolute URL
+email: rjh13064230811@email.ewu.edu.cn
+description: "这里是 xr_日计划 的个人博客，与你一起发现更大的世界 | 要做一个有 swag 的程序员"
+keyword: "rjh, xr_日计划, 个人栈, 日计划的博客, xr_日计划 Blog, 博客, 个人网站, 互联网, Web, C++ STL, React, React Native, 前端,SQL"
+url: "https://52547XRR.github.io" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
@@ -13,10 +13,10 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username: huxpro
-zhihu_username: huxpro
-github_username: huxpro
-twitter_username: huxpro
+#weibo_username: huxpro
+#zhihu_username: huxpro
+github_username: 52547XRR
+twitter_username: Sox
 #facebook_username:  huxpro
 #linkedin_username:  firstname-lastname-idxxxx
 
